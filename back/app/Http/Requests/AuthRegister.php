@@ -26,7 +26,7 @@ class AuthRegister extends FormRequest
         return [
             'name' => 'required|max:191',
             'email' => 'required|email|max:191|unique:users,email',
-            'cpf' => 'required|max:11|unique:users,cpf',
+            'cpf' => 'required|unique:users,cpf',
             'password' => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required',
             'role' => 'required|max:191',
