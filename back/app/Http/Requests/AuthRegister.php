@@ -32,4 +32,20 @@ class AuthRegister extends FormRequest
             'role' => 'required|max:191',
         ];
     }
+
+    public function messages()
+    {
+       return[
+           'name.required' => 'O nome é obrigatório',
+           'email.unique' => 'O email ja foi cadastrado',
+           'cpf.required' => 'O cpf é obrigatório',
+           'cpf.unique' => 'O cpf ja foi cadastrado',
+           'password.required' => 'A senha é obrigatório',
+           'password.confirmed' => 'As senhas não são iguais',
+           'password.min' => 'Senha muito curta, mínimo 8 caracteres',
+           'password_confirmation.required' => 'Confirmação da senha é obrigatório',
+           'role.required' => 'A função é obrigatório',
+       ] ;
+    }
+    
 }

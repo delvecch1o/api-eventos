@@ -28,4 +28,12 @@ class AuthLogin extends FormRequest
             'password' => 'required',
         ];
     }
+
+    public function messages()
+    {
+       return[
+           'email.required' => 'O email é obrigatório',
+           'password.required' => 'A senha é obrigatório',
+       ] ;
+    }
 }
