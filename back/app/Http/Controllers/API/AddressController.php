@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Services\AddressService;
+use App\Http\Requests\AddressRequest;
 
 class AddressController extends Controller
 {
@@ -15,7 +15,7 @@ class AddressController extends Controller
         $this->addressService = $addressService;
     }
 
-    public function cep(Request $request)
+    public function cep(AddressRequest $request)
     {
         $data = $this->addressService->cepService(
             ...array_values(
