@@ -42,16 +42,17 @@ class AddressController extends Controller
         ]);
     }
 
-    public function update(AddressRequest $request, $id)
+    public function update(AddressRequest $request, Address $address)
     {
         $data = $this->addressService->updateService(
-            ...[$id, ...array_values(
+            $address,
+            ...array_values(
                 $request->only([
                     'cep',
                     'numero',
                 ])
 
-            )]
+            )
            
         );
 

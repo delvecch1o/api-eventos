@@ -15,7 +15,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::post('address', [AddressController::class, 'cep']);
     Route::get('address/show', [AddressController::class, 'show']);
-    Route::put('address/update/{id}', [AddressController::class, 'update']);
+    Route::put('address/update/{address}', [AddressController::class, 'update']);
     Route::delete('address/{address}', [AddressController::class, 'destroy']);
 
     Route::post('event', [EventController::class, 'create']);

@@ -44,14 +44,13 @@ class AddressService
 
     }
 
-    public function updateService($id, $cep, $numero)
+    public function updateService(Address $address, $cep, $numero)
     {
         $httpCliente = new HttpClient(['verify' => false]);
         $data = json_decode($httpCliente->get("https://viacep.com.br/ws/${cep}/json/")
             ->getBody()->getContents());
 
-        $user = Auth::user();
-        $user->address()->where('id', $id)->update([
+        $address->update([
             'cep' => $cep,
             'logradouro' => $data->logradouro,
             'complemento' => $data->complemento,
