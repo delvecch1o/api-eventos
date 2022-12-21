@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Services\AddressService;
 use App\Http\Requests\AddressRequest;
+use App\Models\Address;
+use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
@@ -28,6 +30,44 @@ class AddressController extends Controller
         return response()->json([
             'status' => 200,
             'data' => $data['data'],
+        ]);
+    }
+
+    public function show()
+    {
+        $show = $this->addressService->showService();
+
+        return response()->json([
+            'show' => $show
+        ]);
+    }
+
+    public function update(AddressRequest $request, $id)
+    {
+        $data = $this->addressService->updateService(
+            ...[$id, ...array_values(
+                $request->only([
+                    'cep',
+                    'numero',
+                ])
+
+            )]
+           
+        );
+
+        return response()->json([
+            'status' => 200,
+            'data' => $data['data'],
+            'message' => 'Endereço atualizado com sucesso!'
+        ]);
+    }
+
+    public function destroy(Address $address)
+    {
+        $this->addressService->destroyService($address);
+
+        return response()->json([
+            'message' => "Endereço excluido com sucesso"
         ]);
     }
 }

@@ -13,6 +13,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
     
     Route::post('address', [AddressController::class, 'cep']);
+    Route::get('address/show', [AddressController::class, 'show']);
+    Route::put('address/update/{id}', [AddressController::class, 'update']);
+    Route::delete('address/{address}', [AddressController::class, 'destroy']);
+
 
 
 });
