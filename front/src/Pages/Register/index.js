@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { Container, Form, Label, Input, LabelError, Button, LabelLogin, Strong } from './styles';
+import MaskedInput from '../../Components/MaskInput/index';
 
 function Register() {
 
@@ -16,7 +17,7 @@ function Register() {
 
     const submitRegister = (e) => {
         e.preventDefault();
-        if (!nome | !email | !senha | !senhaConfirme | !cpf | ! função) {
+        if (!nome | !email | !senha | !senhaConfirme | !cpf | !função) {
             setError("Preencha todos os campos");
             return;
         } else if (senha !== senhaConfirme) {
@@ -26,7 +27,6 @@ function Register() {
             setError("Senha muito curta, minimo 8 caracteres");
             return;
         }
-        
 
         const data = {
             name: nome,
@@ -45,12 +45,13 @@ function Register() {
                     alert("Usuario Cadastrado Com Sucesso!")
                     history.push('/');
 
-
                 })
                 .catch((error) => {
-                    console.log(error.response.data.errors)
-                    alert(error.response.data.errors.cpf)
-
+                 
+                 alert("Erro \n " + error.response.data.message);
+                 alert("Erro \n " + error.response.data.errors.email);
+                
+            
                 });
         });
 
@@ -65,42 +66,46 @@ function Register() {
                     type='text'
                     placeholder='Digite seu nome'
                     value={nome}
-                    onChange={(e) => [setNome(e.target.value)]}
+                    onChange={(e) => [setNome(e.target.value), setError("")]}
                 />
                 <Input
                     type='email'
                     placeholder='Digite seu e-mail'
                     value={email}
-                    onChange={(e) => [setEmail(e.target.value)]}
+                    onChange={(e) => [setEmail(e.target.value), setError("")]}
                 />
 
                 <Input
                     type='password'
                     placeholder='Digite sua senha, minimo 8 '
                     value={senha}
-                    onChange={(e) => [setSenha(e.target.value)]}
+                    onChange={(e) => [setSenha(e.target.value), setError("")]}
                 />
 
                 <Input
                     type="password"
                     placeholder="Confirme sua Senha"
                     value={senhaConfirme}
-                    onChange={(e) => [setSenhaConfirme(e.target.value)]}
+                    onChange={(e) => [setSenhaConfirme(e.target.value), setError("")]}
                 />
 
-                <Input
-                    type='cpf'
-                    placeholder='Digite seu CPF '
+                <MaskedInput
+                    name="cpf"
+                    mask="999.999.999-99"
+                    placeholder="Digite seu CPF"
                     value={cpf}
-                    onChange={(e) => [setCpf(e.target.value)]}
+                    onChange={(e) => [setCpf(e.target.value), setError("")]}
+
+
                 />
 
                 <Input
                     type='text'
                     placeholder='Digite sua Função'
                     value={função}
-                    onChange={(e) => [setFunção(e.target.value)]}
+                    onChange={(e) => [setFunção(e.target.value), setError("")]}
                 />
+
 
                 <LabelError>{error}</LabelError>
                 <Button type='submit'>Registre-se</Button>
