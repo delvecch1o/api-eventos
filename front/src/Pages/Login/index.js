@@ -31,8 +31,8 @@ function Login() {
       
             })
             .catch((error) => {
-                console.log(error.response)
-               // alert("ERRO \n" + error.response.data.message);
+                
+                alert("ERRO \n" + error.response.data.message);
 
             });
 
