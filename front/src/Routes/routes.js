@@ -17,9 +17,9 @@ axios.defaults.headers.post['Accept'] = 'application/json';
 axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(function (config) {
-const token = localStorage.getItem('auth_token');
-config.headers.Authorization = token ? `Bearer ${token}` : '';
-return config;
+    const token = localStorage.getItem('auth_token');
+    config.headers.Authorization = token ? `Bearer ${token}` : '';
+    return config;
 });
 
 
@@ -30,18 +30,18 @@ function App() {
             <Router>
                 <Switch>
 
-                <RoutesPrivate exact path="/" render={Home} />
-    
-                <Route path="/login">{localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Login />}</Route>
-                <Route path="/register">{localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Register />}</Route>
-                
-                <Route path="*" component={Login} />
-    
+                    <RoutesPrivate exact path="/" render={Home} />
+
+                    <Route path="/login">{localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Login />}</Route>
+                    <Route path="/register">{localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Register />}</Route>
+
+                    <Route path="*" component={Login} />
+
                 </Switch>
             </Router>
         </div>
-    
+
     )
-    }
-    
-    export default App;
+}
+
+export default App;
