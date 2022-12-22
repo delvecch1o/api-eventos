@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import axios from 'axios';
 import RoutesPrivate from './privateRoutes';
 
+import Event from '../Pages/Event';
+import Address from '../Pages/Address';
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
@@ -31,6 +33,8 @@ function App() {
                 <Switch>
 
                     <RoutesPrivate exact path="/" render={Home} />
+                    <RoutesPrivate exact path="/event" render={Event} />
+                    <RoutesPrivate exact path="/address" render={Address} />
 
                     <Route path="/login">{localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Login />}</Route>
                     <Route path="/register">{localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Register />}</Route>
