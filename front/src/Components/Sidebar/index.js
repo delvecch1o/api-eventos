@@ -6,13 +6,10 @@ import axios from 'axios'
 import { 
   FaTimes, 
   FaHome, 
-  FaEnvelope, 
   FaLongArrowAltRight, 
-  FaUserAlt, 
-  FaMoneyCheckAlt, 
+  FaAddressCard, 
   FaRegFileAlt,
-  FaRegCalendarAlt,
-  FaTemperatureLow
+  FaListUl
 } from 'react-icons/fa'
 
 const Sidebar = ({ active }) => {
@@ -49,12 +46,9 @@ const Sidebar = ({ active }) => {
       <Content>
       
       <ItemSidebar Icon={FaHome} text="Home" onClick={() => navegar("/")} />
-      <ItemSidebar Icon={FaTemperatureLow} text="Conversor de Temperaturas" onClick={() => navegar("/temperature")}/>
-      <ItemSidebar Icon={FaMoneyCheckAlt} text="Conversor de Moedas" onClick={() => navegar("/coin")} />
-      <ItemSidebar Icon={FaRegFileAlt} text="Relatorio de Conversões" onClick={() => navegar("/report")} />
-      <ItemSidebar Icon={FaUserAlt} text="Users" />
-      <ItemSidebar Icon={FaEnvelope} text="E-mail" />
-      <ItemSidebar Icon={FaRegCalendarAlt} text="Calendario" />
+      <ItemSidebar Icon={FaAddressCard} text="Cadastrar Endereço" onClick={() => navegar("/address")}/>
+      <ItemSidebar Icon={FaRegFileAlt} text="Cadastrar um Evento" onClick={() => navegar("/event")} />
+      <ItemSidebar Icon={FaListUl} text="Relatorio do Usuario" onClick={() => navegar("/report")} />
       <ItemSidebar Icon={FaLongArrowAltRight} text="Sair" type="button" onClick={logoutSubmit} />
 
       </Content>
