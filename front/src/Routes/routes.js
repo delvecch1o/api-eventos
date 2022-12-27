@@ -4,8 +4,9 @@ import axios from 'axios';
 import RoutesPrivate from './privateRoutes';
 
 import Event from '../Pages/Event';
+import Edit from '../Pages/Event/editEvent';
 import Address from '../Pages/Address';
-import Home from '../Pages/Home';
+import Report from '../Pages/Report';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 
@@ -32,8 +33,9 @@ function App() {
             <Router>
                 <Switch>
 
-                    <RoutesPrivate exact path="/" render={Home} />
+                    <RoutesPrivate exact path="/" render={Report} />
                     <RoutesPrivate exact path="/event" render={Event} />
+                    <RoutesPrivate exact path="/event/:id" render={Edit} />
                     <RoutesPrivate exact path="/address" render={Address} />
 
                     <Route path="/login">{localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Login />}</Route>
