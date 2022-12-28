@@ -6,6 +6,7 @@ import RoutesPrivate from './privateRoutes';
 import Event from '../Pages/Event';
 import Edit from '../Pages/Event/editEvent';
 import Address from '../Pages/Address';
+import Editar from '../Pages/Address/editAddress'; 
 import Report from '../Pages/Report';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
@@ -36,7 +37,9 @@ function App() {
                     <RoutesPrivate exact path="/" render={Report} />
                     <RoutesPrivate exact path="/event" render={Event} />
                     <RoutesPrivate exact path="/event/:id" render={Edit} />
-                    <RoutesPrivate exact path="/address" render={Address} />
+                    <RoutesPrivate exact path="/new-address/" render={Address} />
+                    <RoutesPrivate exact path="/new-address/:cep" render={Address} />
+                    <RoutesPrivate exact path="/address/:id" render={Editar} />
 
                     <Route path="/login">{localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Login />}</Route>
                     <Route path="/register">{localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Register />}</Route>

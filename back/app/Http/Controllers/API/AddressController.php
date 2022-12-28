@@ -17,9 +17,26 @@ class AddressController extends Controller
         $this->addressService = $addressService;
     }
 
+    public function consultarCep(Request $request, $cep)
+    {
+        $consultaCep = $this->addressService->cepService(
+            ...[$cep, ...array_values(
+                $request->only([
+                    'cep',
+                ])
+            )]
+        );
+        return response()->json([
+            'status' => 200,
+            'endereco' =>  $consultaCep
+            
+        ]);
+    }
+
+
     public function cep(AddressRequest $request)
     {
-        $data = $this->addressService->cepService(
+        $addressData = $this->addressService->create(
             ...array_values(
                 $request->only([
                    'cep',
@@ -29,7 +46,7 @@ class AddressController extends Controller
         );
         return response()->json([
             'status' => 200,
-            'data' => $data['data'],
+            'endereco' => $addressData['endereco'],
         ]);
     }
 
@@ -37,6 +54,14 @@ class AddressController extends Controller
     {
         $show = $this->addressService->showService();
 
+        return response()->json([
+            'show' => $show
+        ]);
+    }
+
+    public function showId($id)
+    {
+        $show = $this->addressService->show($id);
         return response()->json([
             'show' => $show
         ]);

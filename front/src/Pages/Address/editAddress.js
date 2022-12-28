@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Header from '../../Components/Header/index';
-import { Container, Form, Label, Input, LabelError, Button, Btn } from './styles';
+import { Container, Form, Label, Input, LabelError, Button } from './styles';
 import MaskedInput from '../../Components/MaskInput/index';
 import axios from "axios";
-import { useParams, Link } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 
-function Address() {
 
-    const [cepInput, setCepInput] = useState();
+function Editar() {
+    
+    const history = useHistory();
+    const [cep, setCep] = useState();
     const [logradouro, setLogradouro] = useState();
     const [complemento, setComplemento] = useState();
     const [bairro, setBairro] = useState();
@@ -17,39 +19,42 @@ function Address() {
     const [numero, setNumero] = useState();
     const [error, setError] = useState();
 
-    const { cep } = useParams();
 
-    async function getCep() {
-        const response = await axios.get('/api/cep/' + cep);
-        console.log(response.data.endereco);
-        setCepInput(response.data.endereco.cep);
-        setLogradouro(response.data.endereco.logradouro);
-        setComplemento(response.data.endereco.complemento);
-        setBairro(response.data.endereco.bairro);
-        setLocalidade(response.data.endereco.localidade);
-        setUf(response.data.endereco.uf);
+    const { id } = useParams();
 
+    async function getCep(){
+        const response = await axios.get('/api/address/show-details/' + id);
+        console.log(response.data.show);
+
+        setCep(response.data.show.cep);
+        setLogradouro(response.data.show.logradouro);
+        setComplemento(response.data.show.complemento);
+        setBairro(response.data.show.bairro);
+        setLocalidade(response.data.show.localidade);
+        setUf(response.data.show.uf);
+        setNumero(response.data.show.numero);
+        
+        
     }
 
     useEffect(() => {
         getCep();
     }, []);
 
-
-    const submitAddress = (e) => {
+    const submitEdit = (e) => {
         e.preventDefault();
 
         const data = {
-            cep: cepInput,
+            cep : cep,
             numero: numero,
-
+            id: id,
         }
 
         axios.get('/sanctum/csrf-cookie').then(response => {
-            axios.post('/api/address', data)
+            axios.put('/api/address/update/' + id, data)
                 .then(res => {
-                    alert("Endereço Cadastrado com Sucesso!");
-
+                    alert("Endereço Atualizado com Sucesso!");
+                    history.push('/');
 
 
                 })
@@ -69,21 +74,17 @@ function Address() {
             <Header />
             <Container>
                 <Label>Cadastre o seu Endereço</Label>
-                <Form onSubmit={submitAddress}>
+                <Form onSubmit={submitEdit} >
 
                     <MaskedInput
                         name="cep"
                         mask="99999-999"
                         placeholder="Digite seu CEP"
-                        value={cepInput}
-                        onChange={(e) => [setCepInput(e.target.value), setError("")]}
+                        value={cep}
+                        onChange={(e) => [setCep(e.target.value), setError("")]}
 
 
                     />
-                    <Link to={`/new-address/${cepInput}`}>
-                        <Btn>Pesquisar</Btn>
-                    </Link>
-
 
                     <Input
                         disabled
@@ -133,7 +134,7 @@ function Address() {
 
 
                     <LabelError>{error}</LabelError>
-                    <Button type='submit'>Cadastrar</Button>
+                    <Button type='submit'>Editar</Button>
 
                 </Form>
             </Container>
@@ -143,4 +144,6 @@ function Address() {
 
 }
 
-export default Address
+
+
+export default Editar

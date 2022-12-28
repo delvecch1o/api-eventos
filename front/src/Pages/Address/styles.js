@@ -59,3 +59,20 @@ export const Button = styled.button`
     background-color: black;
   }
 `
+
+export const Btn = styled.button`
+  padding: 5px 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  background-color: #334899;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  max-width: 350px;
+  &:hover {
+    background-color: black;
+  }
+`
