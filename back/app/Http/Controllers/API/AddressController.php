@@ -67,7 +67,7 @@ class AddressController extends Controller
         ]);
     }
 
-    public function update(Request $request, Address $address)
+    public function update(AddressRequest $request, Address $address)
     {
         $address = $this->addressService->updateService(
             $address,

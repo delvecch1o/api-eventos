@@ -24,8 +24,8 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'cep' => 'required|min:8|unique:addresses,cep',
-            'numero' => 'required',
+            'cep' => 'required|min:8',
+            'numero' => 'required|unique:addresses,numero',
         ];
     }
 
@@ -33,7 +33,7 @@ class AddressRequest extends FormRequest
     {
         return [
             'cep.required' => 'O cep é obrigatório',
-            'cep.unique' => 'O cep ja foi cadastrado',
+            'numero.unique' => 'Endereço com esse numero ja foi cadastrado',
             'cep.min' => 'Cep inválido, por favor digite um cep valido com 8 caracteres',
             'numero.required' => 'O numero é obrigatório',
         ];
