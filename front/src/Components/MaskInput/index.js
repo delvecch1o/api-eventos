@@ -5,7 +5,7 @@ import styles from './Input.module.css';
 
 const onlyNumbers = (str) => str.replace(/[^0-9]/g, '');
 
-const MaskedInput = ({ name, placeholder, onChange, value, mask }) => {
+const MaskedInput = ({ name, placeholder, onChange, value, mask, disabled }) => {
     function handleChange(e) {
         console.log(e.target.name);
         onChange({
@@ -25,6 +25,7 @@ const MaskedInput = ({ name, placeholder, onChange, value, mask }) => {
                 placeholder={placeholder}
                 onChange={handleChange}
                 value={value}
+                disabled={disabled}
             />
         </div>
 

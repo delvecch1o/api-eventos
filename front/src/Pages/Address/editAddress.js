@@ -47,6 +47,7 @@ function Editar() {
         const data = {
             cep : cep,
             numero: numero,
+            complemento: complemento,
             id: id,
         }
 
@@ -79,9 +80,8 @@ function Editar() {
                     <MaskedInput
                         name="cep"
                         mask="99999-999"
-                        placeholder="Digite seu CEP"
                         value={cep}
-                        onChange={(e) => [setCep(e.target.value), setError("")]}
+                        disabled
 
 
                     />
@@ -94,10 +94,11 @@ function Editar() {
 
                     />
                     <Input
-                        disabled
+                        
                         type='text'
                         placeholder='Complemento'
                         value={complemento}
+                        onChange={(e) => [setComplemento(e.target.value), setError("")]}
 
                     />
 

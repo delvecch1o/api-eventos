@@ -3,11 +3,12 @@ import Header from '../../Components/Header/index';
 import { Container, Form, Label, Input, LabelError, Button, Btn } from './styles';
 import MaskedInput from '../../Components/MaskInput/index';
 import axios from "axios";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 
 
 function Address() {
-
+    
+    const history = useHistory();
     const [cepInput, setCepInput] = useState();
     const [logradouro, setLogradouro] = useState();
     const [complemento, setComplemento] = useState();
@@ -49,20 +50,17 @@ function Address() {
             axios.post('/api/address', data)
                 .then(res => {
                     alert("Endereço Cadastrado com Sucesso!");
-
-
+                    history.push('/new-address');
 
                 })
                 .catch((error) => {
-                    alert("Erro \n");
-
-
+                    alert("Erro \n" + error.response.data.message);
+                    history.push('/new-address');
                 });
         });
 
 
     }
-
 
     return (
         <>
@@ -76,7 +74,7 @@ function Address() {
                         mask="99999-999"
                         placeholder="Digite seu CEP"
                         value={cepInput}
-                        onChange={(e) => [setCepInput(e.target.value), setError("")]}
+                        onChange={(e) => [setCepInput(e.target.value), setError("")]}  
 
 
                     />
