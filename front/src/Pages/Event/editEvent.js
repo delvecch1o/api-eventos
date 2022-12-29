@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from '../../Components/Header/index';
 import axios from 'axios';
 import { Container, Form, Label, Input, LabelError, Button } from './styles';
@@ -16,6 +16,23 @@ function Edit() {
     const [error, setError] = useState();
 
     const { id } = useParams();
+
+    async function getEvent(){
+        const response = await axios.get('/api/event/show-details/' + id);
+        console.log(response.data.show);
+        
+        setNome(response.data.show.nome);
+        setPalestrante(response.data.show.palestrante);
+        setInicio(response.data.show.inicio);
+        setFim(response.data.show.fim);
+        setDescricao(response.data.show.descrição);
+        setParticipantes(response.data.show.numero_de_participantes);
+        
+    }
+
+    useEffect(() => {
+        getEvent();
+    }, []);
 
     const submitEdit = (e) => {
         e.preventDefault();

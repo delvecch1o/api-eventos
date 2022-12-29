@@ -59,9 +59,9 @@ class AddressController extends Controller
         ]);
     }
 
-    public function showDetails(Address $address)
+    public function showDetails($id)
     {
-        $show = $this->addressService->show($address);
+        $show = $this->addressService->show($id);
         return response()->json([
             'show' => $show
         ]);

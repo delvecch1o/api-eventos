@@ -45,9 +45,9 @@ class EventController extends Controller
         ]);
     }
 
-    public function showDetails(Event $event)
+    public function showDetails($id)
     {
-        $show = $this->eventService->show($event);
+        $show = $this->eventService->show($id);
         return response()->json([
             'show' => $show
         ]);

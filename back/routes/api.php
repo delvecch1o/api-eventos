@@ -16,13 +16,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('address', [AddressController::class, 'cep']);
     Route::get('cep/{cep}', [AddressController::class, 'consultarCep']);
     Route::get('address/show', [AddressController::class, 'show']);
-    Route::get('address/show-details/{address}', [AddressController::class, 'showDetails']);
+    Route::get('address/show-details/{id}', [AddressController::class, 'showDetails']);
     Route::put('address/update/{address}', [AddressController::class, 'update']);
     Route::delete('address/{address}', [AddressController::class, 'destroy']);
 
     Route::post('event', [EventController::class, 'create']);
     Route::get('event/show', [EventController::class, 'show']);
-    Route::get('event/show-details/{event}', [EventController::class, 'showDetails']);
+    Route::get('event/show-details/{id}', [EventController::class, 'showDetails']);
     Route::put('event/update/{event}', [EventController::class, 'update']);
     Route::delete('event/{event}', [EventController::class, 'destroy']);
 

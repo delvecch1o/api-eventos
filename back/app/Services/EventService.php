@@ -33,10 +33,10 @@ class EventService
         ];
     }
 
-    public function show(Event $event)
+    public function show($id)
     {
         $user = Auth::user();
-        $show = $user->address()->find($event);
+        $show = $user->events()->find($id);
         return $show;
     }
 
