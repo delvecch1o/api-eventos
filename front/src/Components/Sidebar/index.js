@@ -4,8 +4,7 @@ import { Container, Content} from './styles'
 import ItemSidebar from '../ItemSidebar'
 import axios from 'axios'
 import { 
-  FaTimes, 
-  FaHome, 
+  FaTimes,
   FaLongArrowAltRight, 
   FaAddressCard, 
   FaRegFileAlt,
@@ -45,10 +44,9 @@ const Sidebar = ({ active }) => {
       <FaTimes onClick={closeSidebar} />  
       <Content>
       
-      <ItemSidebar Icon={FaHome} text="Home" onClick={() => navegar("/")} />
       <ItemSidebar Icon={FaAddressCard} text="Cadastrar Endereço" onClick={() => navegar("/new-address")}/>
-      <ItemSidebar Icon={FaRegFileAlt} text="Cadastrar um Evento" onClick={() => navegar("/event")} />
-      <ItemSidebar Icon={FaListUl} text="Relatorio do Usuario" onClick={() => navegar("/report")} />
+      <ItemSidebar Icon={FaRegFileAlt} text="Cadastrar Evento" onClick={() => navegar("/event")} />
+      <ItemSidebar Icon={FaListUl} text="Relatório do Usuário" onClick={() => navegar("/")} />
       <ItemSidebar Icon={FaLongArrowAltRight} text="Sair" type="button" onClick={logoutSubmit} />
 
       </Content>

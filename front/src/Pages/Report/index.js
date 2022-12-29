@@ -75,7 +75,7 @@ function Report() {
             <Header />
             <Container>
                 <Label>
-                    Relatorios de Eventos
+                    Relatórios de Eventos
                 </Label>
                 <Table>
                     <Thead>
@@ -120,7 +120,7 @@ function Report() {
 
             <Container>
                 <Label>
-                    Relatorios de Endereços
+                    Relatórios de Endereços
                 </Label>
                 <Table>
                     <Thead>
