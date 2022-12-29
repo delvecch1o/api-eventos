@@ -67,14 +67,15 @@ class AddressController extends Controller
         ]);
     }
 
-    public function update(AddressRequest $request, Address $address)
+    public function update(Request $request, Address $address)
     {
-        $data = $this->addressService->updateService(
+        $address = $this->addressService->updateService(
             $address,
             ...array_values(
                 $request->only([
                     'cep',
                     'numero',
+                    'complemento',
                 ])
 
             )
@@ -83,7 +84,7 @@ class AddressController extends Controller
 
         return response()->json([
             'status' => 200,
-            'data' => $data['data'],
+            'address' => $address['address'],
             'message' => 'Endereço atualizado com sucesso!'
         ]);
     }

@@ -57,24 +57,22 @@ class AddressService
         
     }
 
-    public function updateService(Address $address, $cep, $numero)
+    public function updateService(Address $address, $cep, $numero, $complemento)
     {
-        $httpCliente = new HttpClient(['verify' => false]);
-        $data = json_decode($httpCliente->get("https://viacep.com.br/ws/${cep}/json/")
-            ->getBody()->getContents());
-
+        
+        $cepData = $this->cepService($cep); 
         $address->update([
             'cep' => $cep,
-            'logradouro' => $data->logradouro,
-            'complemento' => $data->complemento,
-            'bairro' => $data->bairro,
-            'localidade' => $data->localidade,
-            'uf' => $data->uf,
+            'logradouro' => $cepData->logradouro,
+            'complemento' => $complemento,
+            'bairro' => $cepData->bairro,
+            'localidade' => $cepData->localidade,
+            'uf' => $cepData->uf,
             'numero' => $numero,
 
         ]);
         return [
-            'data' => $data
+            'address' => $address
         ];
     }
 
