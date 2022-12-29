@@ -49,10 +49,10 @@ class AddressService
 
     }
 
-    public function show($id)
+    public function show(Address $address)
     {
         $user = Auth::user();
-        $show = $user->address()->find($id);
+        $show = $user->address()->find($address);
         return  $show;
         
     }

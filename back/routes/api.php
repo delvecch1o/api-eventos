@@ -16,7 +16,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('address', [AddressController::class, 'cep']);
     Route::get('cep/{cep}', [AddressController::class, 'consultarCep']);
     Route::get('address/show', [AddressController::class, 'show']);
-    Route::get('address/show-details/{id}', [AddressController::class, 'showId']);
+    Route::get('address/show-details/{address}', [AddressController::class, 'showDetails']);
     Route::put('address/update/{address}', [AddressController::class, 'update']);
     Route::delete('address/{address}', [AddressController::class, 'destroy']);
 
