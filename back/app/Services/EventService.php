@@ -33,6 +33,13 @@ class EventService
         ];
     }
 
+    public function show(Event $event)
+    {
+        $user = Auth::user();
+        $show = $user->address()->find($event);
+        return $show;
+    }
+
     public function updateService(Event $event, $nome, $palestrante, $inicio, $fim , $descrição, $numero_de_participantes)
     {
         $event->update([

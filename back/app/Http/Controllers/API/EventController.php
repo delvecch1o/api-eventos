@@ -45,6 +45,14 @@ class EventController extends Controller
         ]);
     }
 
+    public function showDetails(Event $event)
+    {
+        $show = $this->eventService->show($event);
+        return response()->json([
+            'show' => $show
+        ]);
+    }
+
     public function update(EventRequest $request, Event $event)
     {
         $data = $this->eventService->updateService(

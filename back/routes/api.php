@@ -22,6 +22,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('event', [EventController::class, 'create']);
     Route::get('event/show', [EventController::class, 'show']);
+    Route::get('event/show-details/{event}', [EventController::class, 'showDetails']);
     Route::put('event/update/{event}', [EventController::class, 'update']);
     Route::delete('event/{event}', [EventController::class, 'destroy']);
 
