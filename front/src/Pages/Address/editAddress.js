@@ -60,8 +60,7 @@ function Editar() {
 
                 })
                 .catch((error) => {
-                    alert("Erro \n");
-
+                  alert("Erro \n" + error.response.data.errors.numero);
 
                 });
         });

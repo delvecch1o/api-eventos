@@ -48,10 +48,9 @@ function Register() {
                 })
                 .catch((error) => {
                  
-                 alert("Erro \n " + error.response.data.message);
+                 alert("Erro \n " + error.response.data.errors.cpf);
                  alert("Erro \n " + error.response.data.errors.email);
                 
-            
                 });
         });
 
